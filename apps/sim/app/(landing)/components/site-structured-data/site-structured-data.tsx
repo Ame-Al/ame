@@ -7,32 +7,28 @@ const SITE_JSON_LD = {
     {
       '@type': 'Organization',
       '@id': `${SITE_URL}#organization`,
-      name: 'Sim',
-      alternateName: 'Sim Studio',
-      legalName: 'Sim, Inc',
+      name: 'Ame',
+      alternateName: 'Ame',
       description:
-        'Sim is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work.',
+        'Ame is an open-source AI workspace based in Oran, Algeria, where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work.',
       url: SITE_URL,
       foundingDate: '2025',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '80 Langton St',
-        addressLocality: 'San Francisco',
-        addressRegion: 'CA',
-        postalCode: '94103',
-        addressCountry: 'US',
+        addressLocality: 'Oran',
+        addressCountry: 'DZ',
       },
       logo: {
         '@type': 'ImageObject',
         '@id': `${SITE_URL}#logo`,
-        url: `${SITE_URL}/logo/b%26w/text/b%26w.svg`,
-        contentUrl: `${SITE_URL}/logo/b%26w/text/b%26w.svg`,
+        url: `${SITE_URL}/logo/ame-landing.svg`,
+        contentUrl: `${SITE_URL}/logo/ame-landing.svg`,
         width: 49.78314,
         height: 24.276,
-        caption: 'Sim Logo',
+        caption: 'Ame Logo',
       },
       image: { '@id': `${SITE_URL}#logo` },
-      brand: { '@type': 'Brand', name: 'Sim' },
+      brand: { '@type': 'Brand', name: 'Ame' },
       sameAs: [
         'https://x.com/simdotai',
         'https://github.com/simstudioai/sim',
@@ -58,9 +54,9 @@ const SITE_JSON_LD = {
       '@type': 'WebSite',
       '@id': `${SITE_URL}#website`,
       url: SITE_URL,
-      name: 'Sim, The AI Workspace | Build, Deploy & Manage AI Agents',
+      name: 'Ame, The AI Workspace | Build, Deploy & Manage AI Agents',
       description:
-        'Sim is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM. Join 100,000+ builders.',
+        'Ame is an open-source AI workspace based in Oran, Algeria, where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM.',
       publisher: { '@id': `${SITE_URL}#organization` },
       inLanguage: 'en-US',
     },
@@ -79,8 +75,8 @@ const SITE_JSON_LD = {
  * fragment) - every per-page emitter (platform, solutions, pricing, home) points
  * `isPartOf`/`publisher`/`about` at these exact ids, so the graph resolves.
  *
- * Maintenance: `sameAs` must match the Footer social links. `legalName`
- * matches the entity named throughout `apps/sim/app/(landing)/terms`.
+   * Maintenance: `sameAs` must match the Footer social links. Legal contact
+   * details are maintained separately in the terms and privacy-policy surfaces.
  */
 export function SiteStructuredData() {
   return <JsonLd data={SITE_JSON_LD} />

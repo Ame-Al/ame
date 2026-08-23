@@ -153,5 +153,5 @@ We welcome contributions! Please see our [Contributing Guide](.github/CONTRIBUTI
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 <p align="center">
-  <img src="apps/sim/public/static/readme-built-by-ame-team-wide.png" alt="Built by the Ame team in San Francisco" width="100%"/>
+  <img src="apps/sim/public/static/readme-built-by-ame-team-wide.png" alt="Built by the Ame team in Oran, Algeria" width="100%"/>
 </p>
