@@ -1,0 +1,201 @@
+/**
+ * @vitest-environment node
+ */
+import { createMockRequest, resetEnvFlagsMock, setEnvFlags } from '@sim/testing'
+import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
+
+const handlerMocks = vi.hoisted(() => ({
+  betterAuthGET: vi.fn(),
+  betterAuthPOST: vi.fn(),
+  ensureAnonymousUserExists: vi.fn(),
+  createAnonymousSession: vi.fn(() => ({
+    user: { id: 'anon' },
+    session: { id: 'anon-session' },
+  })),
+}))
+
+vi.mock('better-auth/next-js', () => ({
+  toNextJsHandler: () => ({
+    GET: handlerMocks.betterAuthGET,
+    POST: handlerMocks.betterAuthPOST,
+  }),
+}))
+
+vi.mock('@/lib/auth', () => ({
+  auth: { handler: {} },
+}))
+
+vi.mock('@/lib/auth/anonymous', () => ({
+  ensureAnonymousUserExists: handlerMocks.ensureAnonymousUserExists,
+  createAnonymousSession: handlerMocks.createAnonymousSession,
+}))
+
+import { GET, POST } from '@/app/api/auth/[...all]/route'
+
+afterAll(resetEnvFlagsMock)
+
+describe('auth catch-all route (DISABLE_AUTH get-session)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    setEnvFlags({ isAuthDisabled: false })
+  })
+
+  it('returns anonymous session in better-auth response envelope when auth is disabled', async () => {
+    setEnvFlags({ isAuthDisabled: true })
+
+    const req = createMockRequest(
+      'GET',
+      undefined,
+      {},
+      'http://localhost:3000/api/auth/get-session'
+    )
+
+    const res = await GET(req)
+    const json = await res.json()
+
+    expect(handlerMocks.ensureAnonymousUserExists).toHaveBeenCalledTimes(1)
+    expect(handlerMocks.betterAuthGET).not.toHaveBeenCalled()
+    expect(json).toEqual({
+      user: { id: 'anon' },
+      session: { id: 'anon-session' },
+    })
+  })
+
+  it('delegates to better-auth handler when auth is enabled', async () => {
+    setEnvFlags({ isAuthDisabled: false })
+
+    const { NextResponse } = await import('next/server')
+    handlerMocks.betterAuthGET.mockResolvedValueOnce(
+      new NextResponse(JSON.stringify({ data: { ok: true } }), {
+        headers: { 'content-type': 'application/json' },
+      })
+    )
+
+    const req = createMockRequest(
+      'GET',
+      undefined,
+      {},
+      'http://localhost:3000/api/auth/get-session'
+    )
+
+    const res = await GET(req)
+    const json = await res.json()
+
+    expect(handlerMocks.ensureAnonymousUserExists).not.toHaveBeenCalled()
+    expect(handlerMocks.betterAuthGET).toHaveBeenCalledTimes(1)
+    expect(json).toEqual({ data: { ok: true } })
+  })
+})
+
+describe('auth catch-all route organization mutations', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('blocks Better Auth organization mutation endpoints that bypass app lifecycle rules', async () => {
+    const req = createMockRequest(
+      'POST',
+      undefined,
+      {},
+      'http://localhost:3000/api/auth/organization/create'
+    )
+
+    const res = await POST(req)
+    const json = await res.json()
+
+    expect(res.status).toBe(404)
+    expect(handlerMocks.betterAuthPOST).not.toHaveBeenCalled()
+    expect(json).toEqual({
+      error: 'Organization mutations are handled by application API routes.',
+    })
+  })
+
+  it('allows safe Better Auth organization session endpoints', async () => {
+    const { NextResponse } = await import('next/server')
+    handlerMocks.betterAuthPOST.mockResolvedValueOnce(
+      new NextResponse(JSON.stringify({ data: { ok: true } }), {
+        headers: { 'content-type': 'application/json' },
+      })
+    )
+
+    const req = createMockRequest(
+      'POST',
+      undefined,
+      {},
+      'http://localhost:3000/api/auth/organization/set-active'
+    )
+
+    const res = await POST(req)
+    const json = await res.json()
+
+    expect(handlerMocks.betterAuthPOST).toHaveBeenCalledTimes(1)
+    expect(json).toEqual({ data: { ok: true } })
+  })
+})
+
+describe('auth catch-all route SSO provider mutations', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it.each([
+    'sso/update-provider',
+    'sso/delete-provider',
+    'sso/request-domain-verification',
+    'sso/verify-domain',
+  ])('blocks the plugin-served %s endpoint', async (path) => {
+    const req = createMockRequest('POST', undefined, {}, `http://localhost:3000/api/auth/${path}`)
+
+    const res = await POST(req)
+    const json = await res.json()
+
+    expect(res.status).toBe(404)
+    expect(handlerMocks.betterAuthPOST).not.toHaveBeenCalled()
+    expect(json).toEqual({
+      error: 'SSO provider mutations are handled by application API routes.',
+    })
+  })
+
+  it.each([
+    'sso/saml2/callback/acme',
+    'sso/saml2/sp/acs/acme',
+    'sso/saml2/sp/slo/acme',
+    'sso/saml2/logout/acme',
+  ])('allows the SAML protocol endpoint %s', async (path) => {
+    const { NextResponse } = await import('next/server')
+    handlerMocks.betterAuthPOST.mockResolvedValueOnce(
+      new NextResponse(JSON.stringify({ data: { ok: true } }), {
+        headers: { 'content-type': 'application/json' },
+      })
+    )
+
+    const req = createMockRequest('POST', undefined, {}, `http://localhost:3000/api/auth/${path}`)
+
+    const res = await POST(req)
+    const json = await res.json()
+
+    expect(handlerMocks.betterAuthPOST).toHaveBeenCalledTimes(1)
+    expect(json).toEqual({ data: { ok: true } })
+  })
+
+  it('leaves the SSO sign-in endpoint reachable', async () => {
+    const { NextResponse } = await import('next/server')
+    handlerMocks.betterAuthPOST.mockResolvedValueOnce(
+      new NextResponse(JSON.stringify({ data: { url: 'https://idp.example.com' } }), {
+        headers: { 'content-type': 'application/json' },
+      })
+    )
+
+    const req = createMockRequest(
+      'POST',
+      undefined,
+      {},
+      'http://localhost:3000/api/auth/sign-in/sso'
+    )
+
+    const res = await POST(req)
+
+    expect(handlerMocks.betterAuthPOST).toHaveBeenCalledTimes(1)
+    expect(await res.json()).toEqual({ data: { url: 'https://idp.example.com' } })
+  })
+})

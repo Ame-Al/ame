@@ -1,0 +1,10 @@
+{
+  "title": "Files",
+  "pages": [
+    "index",
+    "editor",
+    "using-in-workflows",
+    "generating",
+    "passing-files"
+  ]
+}
