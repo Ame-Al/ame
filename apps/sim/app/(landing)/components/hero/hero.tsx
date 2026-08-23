@@ -7,20 +7,18 @@ import {
   LANDING_GUTTER,
   LANDING_HERO_TOP_PADDING,
 } from '@/app/(landing)/components/landing-layout'
-import { TrustedBy } from '@/app/(landing)/components/trusted-by'
 
 /**
  * Landing hero - the only `<h1>` on the page.
  *
  * A single stacked flow (no split panels): headline and the sign-up row sit
- * left-aligned at the top; below them a full-width media frame
- * previews the platform UI; the customer-logo row closes the section centered
- * underneath. The section is capped and centered at the shared `max-w-[1460px]`
+ * left-aligned at the top; below them a full-width media frame previews the
+ * platform UI. The section is capped and centered at the shared `max-w-[1460px]`
  * (`mx-auto`) with the `px-20 max-lg:px-8 max-sm:px-5` gutter so the headline
  * starts on the navbar wordmark's vertical line.
  *
- * Text blocks stack a uniform 22px apart (`gap-[22px]`); the media frame and
- * logo row carry their own larger top margins to read as separate bands.
+ * Text blocks stack a uniform 22px apart (`gap-[22px]`); the media frame carries
+ * its own larger top margin to read as a separate band.
  *
  * The sign-up row is the shared {@link HeroCta} - the single source of truth for
  * the email-capture bar and the "Book a demo" / "Sign up" chips - reused
@@ -57,9 +55,6 @@ import { TrustedBy } from '@/app/(landing)/components/trusted-by'
  * {@link HeroStat} (the "Global work done by Sim" figure with its vertical
  * progress rail and staggered page-load entrance), hidden below `lg` where
  * the row has no room.
- *
- * The shared {@link TrustedBy} block renders in its `row` layout - a centered
- * muted label above a single centered row of bare wordmarks.
  *
  * Carries the sr-only ~50-word product summary for AI citation (CLAUDE.md → GEO).
  */
@@ -121,8 +116,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-
-      <TrustedBy layout='row' className='mt-[42px] w-full max-sm:mt-6' />
     </section>
   )
 }
