@@ -851,8 +851,8 @@ export const filesAuditOpenApiDocument = defineOpenApiDocument({
       'Version 2 of the Sim REST API for workspace files, resumable uploads, public shares, and organization audit logs.',
     version: '2.0.0',
     contact: {
-      name: 'Sim Support',
-      email: 'help@sim.ai',
+      name: 'Ame Support',
+      email: 'galaxyoram@gmail.com',
       url: 'https://www.sim.ai',
     },
     license: {

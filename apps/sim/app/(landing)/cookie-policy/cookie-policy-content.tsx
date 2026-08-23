@@ -285,7 +285,7 @@ export const COOKIE_POLICY_CONFIG: LegalPageConfig = {
           content: (
             <>
               Questions about this policy, or about how we use cookies, can go to{' '}
-              <ProseLink href='mailto:privacy@sim.ai'>privacy@sim.ai</ProseLink>.
+              <ProseLink href='mailto:galaxyoram@gmail.com'>galaxyoram@gmail.com</ProseLink>.
             </>
           ),
         },

@@ -152,8 +152,8 @@ export const logsOpenApiDocument = defineOpenApiDocument({
       'Version 2 of the Sim REST API for listing workflow execution logs and retrieving complete diagnostic run snapshots.',
     version: '2.0.0',
     contact: {
-      name: 'Sim Support',
-      email: 'help@sim.ai',
+      name: 'Ame Support',
+      email: 'galaxyoram@gmail.com',
       url: 'https://www.sim.ai',
     },
     license: {

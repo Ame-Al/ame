@@ -1602,7 +1602,7 @@ export const tablesOpenApiDocument = defineOpenApiDocument({
     description:
       'Version 2 of the Sim REST API for tables, typed columns, rows, saved views, workflow groups, folders, imports, and exports. Row data is keyed by column name.',
     version: '2.0.0',
-    contact: { name: 'Sim Support', email: 'help@sim.ai', url: 'https://www.sim.ai' },
+    contact: { name: 'Ame Support', email: 'galaxyoram@gmail.com', url: 'https://www.sim.ai' },
     license: { name: 'Apache 2.0', url: 'https://www.apache.org/licenses/LICENSE-2.0.html' },
   },
   servers: [{ url: 'https://www.sim.ai', description: 'Production' }],

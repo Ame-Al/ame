@@ -1254,8 +1254,8 @@ export const resourcesOpenApiDocument = defineOpenApiDocument({
       'Version 2 of the Sim REST API for workspace metadata, members, MCP servers, skills, custom tools, credentials, and write-only secrets.',
     version: '2.0.0',
     contact: {
-      name: 'Sim Support',
-      email: 'help@sim.ai',
+      name: 'Ame Support',
+      email: 'galaxyoram@gmail.com',
       url: 'https://www.sim.ai',
     },
     license: {

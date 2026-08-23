@@ -162,7 +162,7 @@ Built-in table creation and management:
 
 - [Documentation](https://docs.sim.ai): Self-serve guides and reference
 - [Community Slack](https://join.slack.com/t/sim-ott9864/shared_invite/zt-43lp8tc5v-0qrrqHGBKUsvQlpoouH~TA): Community support
-- Email: help@sim.ai
+- Email: galaxyoram@gmail.com
 - Security issues: security@sim.ai
 
 ## Legal

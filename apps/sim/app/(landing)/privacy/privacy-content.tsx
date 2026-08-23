@@ -576,7 +576,7 @@ export const PRIVACY_CONFIG: LegalPageConfig = {
               data sharing practices (such as analytics or advertising services) may be considered a
               "sale" or "share" under CCPA/CPRA. You have the right to opt-out of such data sharing.
               To exercise this right, contact us at{' '}
-              <ProseLink href='mailto:privacy@sim.ai'>privacy@sim.ai</ProseLink>.
+              <ProseLink href='mailto:galaxyoram@gmail.com'>galaxyoram@gmail.com</ProseLink>.
             </>
           ),
         },
@@ -701,9 +701,9 @@ export const PRIVACY_CONFIG: LegalPageConfig = {
           kind: 'list',
           items: [
             <>
-              Email: <ProseLink href='mailto:privacy@sim.ai'>privacy@sim.ai</ProseLink>
+              Email: <ProseLink href='mailto:galaxyoram@gmail.com'>galaxyoram@gmail.com</ProseLink>
             </>,
-            `Mailing Address: Ame, 80 Langton St, San Francisco, CA 94103, USA`,
+            `Mailing Address: Ame, Bel-Air, Oran, Algeria`,
           ],
         },
         {
