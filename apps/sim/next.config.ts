@@ -12,10 +12,10 @@ import { LANDING_ROUTES } from './lib/landing/routes'
 const nextConfig: NextConfig = {
   devIndicators: false,
   poweredByHeader: false,
-  // Safe here since this repo's source is already fully public on GitHub -
-  // no additional exposure versus Next's default (disabled to avoid leaking
-  // source on the client).
-  productionBrowserSourceMaps: true,
+  // Generating browser source maps materially increases Next production-build
+  // time and memory use. They are not needed for the public Ame deployment
+  // and would expose source artifacts to every visitor.
+  productionBrowserSourceMaps: false,
   turbopack: {
     root: path.join(import.meta.dirname, '../..'),
   },
