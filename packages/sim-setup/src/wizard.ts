@@ -172,15 +172,15 @@ export async function runWizard(flags: WizardFlags): Promise<void> {
   p.note(
     [
       mode === 'k8s' ? `port-forward, then open ${APP_SIGNUP_URL}` : `open ${APP_SIGNUP_URL}`,
-      'manage it:  npx sim-setup start · stop · update · status · logs',
-      'check your setup:  npx sim-setup doctor',
+      'manage it:  npx ame-setup start · stop · update · status · logs',
+      'check your setup:  npx ame-setup doctor',
       mode === 'dev' && !startDevNow ? `start Sim:  bun run ${devScript}` : null,
     ]
       .filter(Boolean)
       .join('\n'),
     'Next steps'
   )
-  p.outro(theme.accent('Sim is ready.'))
+  p.outro(theme.accent('Ame is ready.'))
 
   if (mode === 'compose' && process.platform === 'darwin') {
     spawnSync('open', [APP_SIGNUP_URL], { stdio: 'ignore' })
@@ -194,7 +194,7 @@ export async function runWizard(flags: WizardFlags): Promise<void> {
       process.exitCode = child.status ?? 0
     } else {
       p.log.warn(
-        `Ports still in use — Sim wasn't started. Free them, then run ${theme.command(`bun run ${devScript}`)}.`
+        `Ports still in use — Ame wasn't started. Free them, then run ${theme.command(`bun run ${devScript}`)}.`
       )
     }
   }

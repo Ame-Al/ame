@@ -10,18 +10,20 @@ const SETUP_FEATURES =
   'email | storage | sandbox | jobs | cache | knowledge | knowledge-embeddings | llm | integration <slug>'
 
 const USAGE = `Usage:
-  sim-setup [--quick] [--dir <path>] [--mode compose|dev|k8s]
-  sim-setup config                         show configured capabilities and integrations
-  sim-setup add <feature>                  configure ${SETUP_FEATURES}
-  sim-setup doctor [--fix] [--json]        check your setup
-  sim-setup start | stop | restart         bring your install up / down / cycle
-  sim-setup update                         pull/rebuild and apply Compose images
-  sim-setup status                         show what's installed and healthy
-  sim-setup logs                           follow logs
-  sim-setup down                           remove containers (data kept)
-  sim-setup reset                          archive .env + wipe managed data
+  ame-setup [--quick] [--dir <path>] [--mode compose|dev|k8s]
+  ame-setup config                         show configured capabilities and integrations
+  ame-setup add <feature>                  configure ${SETUP_FEATURES}
+  ame-setup doctor [--fix] [--json]        check your setup
+  ame-setup start | stop | restart         bring your install up / down / cycle
+  ame-setup update                         pull/rebuild and apply Compose images
+  ame-setup status                         show what's installed and healthy
+  ame-setup logs                           follow logs
+  ame-setup down                           remove containers (data kept)
+  ame-setup reset                          archive .env + wipe managed data
 
-Note: dev and k8s modes require a Sim source checkout.`
+Compatibility: sim-setup remains an alias for existing automation.
+
+Note: dev and k8s modes require an Ame source checkout.`
 
 async function main(): Promise<void> {
   const invocation = parseSetupArguments(process.argv.slice(2))
@@ -78,7 +80,7 @@ function renderFailure(error: unknown): void {
     }
   }
   console.error(
-    `\n  ${theme.muted('Your progress is saved — re-run')} ${theme.command('npx sim-setup')} ${theme.muted('to pick up where you left off.')}`
+    `\n  ${theme.muted('Your progress is saved — re-run')} ${theme.command('npx ame-setup')} ${theme.muted('to pick up where you left off.')}`
   )
 }
 

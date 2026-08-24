@@ -132,7 +132,7 @@ function featureGlyph(feature: FeatureStatus): string {
 }
 
 function withoutSetupCommand(message: string): string {
-  return message.replace(/\s+Run npx sim-setup add [^.]*\.$/, '')
+  return message.replace(/\s+Run npx (?:ame|sim)-setup add [^.]*\.$/, '')
 }
 
 function setupHint(source: SetupStatusSource, command: string): string | null {
@@ -330,7 +330,7 @@ export function renderSetupStatusReport(report: SetupStatusReport): string {
   const representedOAuthClients = new Set(
     deploymentIntegrations.flatMap((integration) => {
       if (!integration.setupCommand) return []
-      return [integration.setupCommand.replace('npx sim-setup add integration ', '')]
+      return [integration.setupCommand.replace('npx ame-setup add integration ', '')]
     })
   )
   const additionalOAuthClients = Object.values(report.capabilityStatus.oauthClients.clients).filter(
@@ -354,10 +354,10 @@ export function renderSetupStatusReport(report: SetupStatusReport): string {
 
 export async function runSetupStatus(): Promise<number> {
   const sources = await discoverConfigurationSources()
-  console.log(`\n${theme.heading('◆ Sim setup status')}\n`)
+  console.log(`\n${theme.heading('◆ Ame setup status')}\n`)
   if (sources.length === 0) {
     console.log(` ${glyph.fail} No local-dev, Docker Compose, or Helm configuration detected.`)
-    console.log(`   ${theme.muted('run: npx sim-setup')}`)
+    console.log(`   ${theme.muted('run: npx ame-setup')}`)
     return 1
   }
 

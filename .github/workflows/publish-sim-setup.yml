@@ -1,4 +1,4 @@
-name: Publish Sim Setup Package
+name: Publish Ame Setup Packages
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: publish-sim-setup-${{ github.ref }}
+  group: publish-ame-setup-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -109,6 +109,18 @@ jobs:
             exit 1
           fi
 
+          (
+            cd compat
+            bun pm pkg set "version=$VERSION"
+            bun pm pkg set "dependencies.ame-setup=$VERSION"
+            COMPAT_VERSION="$(bun -p "require('./package.json').version")"
+            COMPAT_TARGET="$(bun -p "require('./package.json').dependencies['ame-setup']")"
+            if [ "$COMPAT_VERSION" != "$VERSION" ] || [ "$COMPAT_TARGET" != "$VERSION" ]; then
+              echo "Compatibility package version injection mismatch." >&2
+              exit 1
+            fi
+          )
+
           {
             echo "version=$VERSION"
             echo "tag=$TAG"
@@ -118,8 +130,8 @@ jobs:
         working-directory: packages/sim-setup
         run: |
           set -euo pipefail
-          SMOKE_DIR="$(mktemp -d "$RUNNER_TEMP/sim-setup-smoke.XXXXXX")"
-          PACKAGE_PATH="$SMOKE_DIR/sim-setup.tgz"
+          SMOKE_DIR="$(mktemp -d "$RUNNER_TEMP/ame-setup-smoke.XXXXXX")"
+          PACKAGE_PATH="$SMOKE_DIR/ame-setup.tgz"
           bun pm pack --ignore-scripts --filename "$PACKAGE_PATH" --quiet
           tar -xzf "$PACKAGE_PATH" -C "$SMOKE_DIR"
 
@@ -150,18 +162,27 @@ jobs:
             exit 1
           fi
 
-      - name: Verify version is unpublished
+      - name: Verify package versions are unpublished
         working-directory: packages/sim-setup
         env:
           VERSION: ${{ steps.release.outputs.version }}
         run: |
-          if bun pm view "sim-setup@$VERSION" version > /dev/null 2>&1; then
-            echo "sim-setup@$VERSION is already published. Bump packages/sim-setup/package.json before releasing another build." >&2
-            exit 1
-          fi
+          for PACKAGE in ame-setup sim-setup; do
+            if bun pm view "$PACKAGE@$VERSION" version > /dev/null 2>&1; then
+              echo "$PACKAGE@$VERSION is already published. Bump packages/sim-setup/package.json before releasing another build." >&2
+              exit 1
+            fi
+          done
 
-      - name: Publish to npm
+      - name: Publish ame-setup to npm
         working-directory: packages/sim-setup
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TAG: ${{ steps.release.outputs.tag }}
+        run: bun publish --access public --tag "$NPM_TAG" --no-save
+
+      - name: Publish sim-setup compatibility alias to npm
+        working-directory: packages/sim-setup/compat
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TAG: ${{ steps.release.outputs.tag }}
@@ -171,4 +192,4 @@ jobs:
         env:
           VERSION: ${{ steps.release.outputs.version }}
           NPM_TAG: ${{ steps.release.outputs.tag }}
-        run: echo "Published sim-setup@$VERSION with the '$NPM_TAG' tag."
+        run: echo "Published ame-setup@$VERSION and the sim-setup compatibility alias with the '$NPM_TAG' tag."

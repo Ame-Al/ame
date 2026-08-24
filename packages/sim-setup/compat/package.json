@@ -1,0 +1,32 @@
+{
+  "name": "sim-setup",
+  "version": "1.1.0",
+  "description": "Compatibility wrapper for the renamed ame-setup CLI",
+  "type": "module",
+  "bin": {
+    "sim-setup": "bin/sim-setup.mjs"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ame-Al/ame.git",
+    "directory": "packages/sim-setup/compat"
+  },
+  "homepage": "https://github.com/Ame-Al/ame/tree/main/packages/sim-setup#readme",
+  "bugs": {
+    "url": "https://github.com/Ame-Al/ame/issues"
+  },
+  "dependencies": {
+    "ame-setup": "1.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

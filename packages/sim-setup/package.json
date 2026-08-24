@@ -1,10 +1,10 @@
 {
-  "name": "sim-setup",
-  "version": "1.0.0",
-  "description": "Set up and manage a self-hosted Sim installation",
+  "name": "ame-setup",
+  "version": "1.1.0",
+  "description": "Set up and manage a self-hosted Ame installation",
   "type": "module",
   "bin": {
-    "sim-setup": "dist/index.js"
+    "ame-setup": "dist/index.js"
   },
   "scripts": {
     "prebuild": "bun run clean",
@@ -24,22 +24,22 @@
     "THIRD_PARTY_LICENSES"
   ],
   "keywords": [
-    "sim",
+    "ame",
     "self-hosted",
     "docker",
     "compose",
     "setup"
   ],
-  "author": "Sim",
+  "author": "Ame",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simstudioai/sim.git",
+    "url": "git+https://github.com/Ame-Al/ame.git",
     "directory": "packages/sim-setup"
   },
-  "homepage": "https://github.com/simstudioai/sim/tree/main/packages/sim-setup#readme",
+  "homepage": "https://github.com/Ame-Al/ame/tree/main/packages/sim-setup#readme",
   "bugs": {
-    "url": "https://github.com/simstudioai/sim/issues"
+    "url": "https://github.com/Ame-Al/ame/issues"
   },
   "publishConfig": {
     "access": "public"

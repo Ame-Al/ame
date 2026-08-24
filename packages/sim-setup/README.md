@@ -1,11 +1,13 @@
-# sim-setup
+# ame-setup
 
-Set up and manage a self-hosted Sim installation.
+Set up and manage a self-hosted Ame installation.
 
 ```bash
-npx sim-setup
+npx ame-setup
 ```
 
-Outside a Sim source checkout, the command creates a Docker Compose installation using published
-images. Inside a Sim source checkout, use `bun run sim-setup` to expose the complete development
+Outside an Ame source checkout, the command creates a Docker Compose installation using published
+images. Inside an Ame source checkout, use `bun run ame-setup` to expose the complete development
 and deployment wizard.
+
+`npx sim-setup` remains available as a compatibility alias for existing automation and installations.
