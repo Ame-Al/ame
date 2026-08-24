@@ -9,8 +9,8 @@ export function generateBrandedMetadata(override: Partial<Metadata> = {}): Metad
   const brand = getBrandConfig()
 
   const defaultTitle = brand.name
-  const summaryFull = `Sim is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work — visually, conversationally, or with code. Trusted by over 100,000 builders — from startups to Fortune 500 companies. SOC2 compliant.`
-  const summaryShort = `Sim is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work.`
+  const summaryFull = `Ame is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work — visually, conversationally, or with code. Trusted by over 100,000 builders — from startups to Fortune 500 companies. SOC2 compliant.`
+  const summaryShort = `Ame is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work.`
 
   return {
     title: {
@@ -134,9 +134,9 @@ export function generateStructuredData() {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'Sim',
+    name: 'Ame',
     description:
-      'Sim is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work. Trusted by over 100,000 builders. SOC2 compliant.',
+      'Ame is the open-source AI workspace where teams build, deploy, and manage AI agents. Connect 1,000+ integrations and every major LLM to create agents that automate real work. Trusted by over 100,000 builders. SOC2 compliant.',
     url: getBaseUrl(),
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
@@ -149,7 +149,7 @@ export function generateStructuredData() {
     },
     creator: {
       '@type': 'Organization',
-      name: 'Sim',
+      name: 'Ame',
       url: SITE_URL,
     },
     featureList: [
