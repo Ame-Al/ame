@@ -1,0 +1,16 @@
+{
+  "extends": "@sim/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/app/(landing)/comparisons/utils": ["./adapters/marketing-data.ts"],
+      "@/app/(landing)/models/utils": ["./adapters/marketing-data.ts"],
+      "@/app/(landing)/landing-analytics": ["./adapters/noop-analytics.tsx"],
+      "@/components/ui": ["./adapters/ui.ts"],
+      "@/lib/core/config/env-flags": ["./adapters/env-flags.ts"],
+      "@/lib/github/stars": ["./adapters/github-stars.ts"],
+      "@/*": ["../sim/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", ".next"]
+}
