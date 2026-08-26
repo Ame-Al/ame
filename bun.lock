@@ -103,6 +103,7 @@
         "@radix-ui/react-dropdown-menu": "^2.1.17",
         "@radix-ui/react-popover": "^1.1.5",
         "@radix-ui/react-slot": "1.2.2",
+        "@sim/deployment-config": "workspace:*",
         "@sim/emcn": "workspace:*",
         "@tanstack/react-query": "5.90.8",
         "class-variance-authority": "^0.7.1",

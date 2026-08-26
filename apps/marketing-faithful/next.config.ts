@@ -6,13 +6,14 @@ const marketingRoot = __dirname
 const repositoryRoot = path.resolve(marketingRoot, '../..')
 const originalAppRoot = path.join(repositoryRoot, 'apps/sim')
 const marketingAliases = {
-  '@': originalAppRoot,
   '@/app/(landing)/comparisons/utils': path.join(marketingRoot, 'adapters/marketing-data.ts'),
   '@/app/(landing)/models/utils': path.join(marketingRoot, 'adapters/marketing-data.ts'),
   '@/app/(landing)/landing-analytics': path.join(marketingRoot, 'adapters/noop-analytics.tsx'),
   '@/components/ui': path.join(marketingRoot, 'adapters/ui.ts'),
   '@/lib/core/config/env-flags': path.join(marketingRoot, 'adapters/env-flags.ts'),
   '@/lib/github/stars': path.join(marketingRoot, 'adapters/github-stars.ts'),
+  '@/lib/landing/seo': path.join(marketingRoot, 'adapters/landing-seo.ts'),
+  '@': originalAppRoot,
 }
 
 const nextConfig: NextConfig = {

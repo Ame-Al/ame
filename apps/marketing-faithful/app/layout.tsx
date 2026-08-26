@@ -2,6 +2,7 @@
 import type { Metadata, Viewport } from 'next'
 import { season } from '../../sim/app/_styles/fonts/season/season'
 import '../../sim/app/_styles/globals.css'
+import { LandingShell } from '../../sim/app/(landing)/components/landing-shell/landing-shell'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
 export default function MarketingRootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className={`${season.variable} font-season`}>{children}</body>
+      <body className={`${season.variable} font-season`}>
+        <LandingShell>{children}</LandingShell>
+      </body>
     </html>
   )
 }
