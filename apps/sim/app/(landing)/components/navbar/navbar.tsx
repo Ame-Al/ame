@@ -32,18 +32,12 @@ import { DEMO_HREF, SIGNUP_HREF } from '@/app/(landing)/constants'
  *
  * Layout (left → right): Sim wordmark (18px glyph centered in a
  * chip-height slot, chip-text color) → the {@link NAV_MENUS} mega-menus
- * (pure-CSS hover/focus dropdowns) → Pricing → GitHub stars. Right side: Log in
+ * (pure-CSS hover/focus dropdowns) → Pricing → GitHub. Right side: Log in
  * (default chip), Contact sales (outline chip), Sign up (filled chip).
  * Enterprise lives inside the Resources mega-menu, not as a standalone chip.
  */
 
 interface NavbarProps {
-  /**
-   * Formatted GitHub star count (e.g. "28.8k"), fetched server-side at
-   * build/revalidate time. Omitted by non-marketing shells that reuse this
-   * navbar without a stars fetch (the GitHub chip is hidden when absent).
-   */
-  stars?: string
   /**
    * Render only the Sim wordmark - no nav menus, GitHub chip, auth chips, or
    * mobile sheet. Used by non-marketing shells (resume, public-file auth) that
@@ -52,7 +46,7 @@ interface NavbarProps {
   logoOnly?: boolean
 }
 
-export function Navbar({ stars, logoOnly = false }: NavbarProps) {
+export function Navbar({ logoOnly = false }: NavbarProps) {
   return (
     <NavbarShell>
       <nav
@@ -79,7 +73,7 @@ export function Navbar({ stars, logoOnly = false }: NavbarProps) {
               <ChipLink href='/pricing' itemProp='url'>
                 Pricing
               </ChipLink>
-              {stars !== undefined && <GitHubChip stars={stars} />}
+              <GitHubChip />
             </div>
 
             <div className='ml-auto hidden items-center gap-1 lg:flex'>
@@ -94,7 +88,7 @@ export function Navbar({ stars, logoOnly = false }: NavbarProps) {
               </ChipLink>
             </div>
 
-            <MobileNav stars={stars ?? '0'} />
+            <MobileNav />
           </>
         )}
       </nav>

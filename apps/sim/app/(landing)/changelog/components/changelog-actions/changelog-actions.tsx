@@ -16,7 +16,7 @@ export function ChangelogActions() {
     <div className='flex flex-wrap items-center gap-1'>
       <ChipLink
         variant='primary'
-        href='https://github.com/simstudioai/sim/releases'
+        href='https://github.com/Ame-Al/ame/releases'
         target='_blank'
         rel='noopener noreferrer'
         leftIcon={GithubOutlineIcon}

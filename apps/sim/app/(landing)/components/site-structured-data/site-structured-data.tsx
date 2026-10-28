@@ -31,7 +31,7 @@ const SITE_JSON_LD = {
       brand: { '@type': 'Brand', name: 'Ame' },
       sameAs: [
         'https://x.com/simdotai',
-        'https://github.com/simstudioai/sim',
+        'https://github.com/Ame-Al/ame',
         'https://www.linkedin.com/company/simstudioai/',
         'https://join.slack.com/t/sim-ott9864/shared_invite/zt-43lp8tc5v-0qrrqHGBKUsvQlpoouH~TA',
       ],
@@ -75,8 +75,8 @@ const SITE_JSON_LD = {
  * fragment) - every per-page emitter (platform, solutions, pricing, home) points
  * `isPartOf`/`publisher`/`about` at these exact ids, so the graph resolves.
  *
-   * Maintenance: `sameAs` must match the Footer social links. Legal contact
-   * details are maintained separately in the terms and privacy-policy surfaces.
+ * Maintenance: `sameAs` must match the Footer social links. Legal contact
+ * details are maintained separately in the terms and privacy-policy surfaces.
  */
 export function SiteStructuredData() {
   return <JsonLd data={SITE_JSON_LD} />

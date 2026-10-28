@@ -31,11 +31,6 @@ import { DEMO_HREF, SIGNUP_HREF } from '@/app/(landing)/constants'
  * `prefers-reduced-motion`.
  */
 
-interface MobileNavProps {
-  /** Formatted GitHub star count (e.g. "28.8k"). */
-  stars: string
-}
-
 /**
  * Standalone top-level routes shown in the sheet alongside the expanded mega-menu
  * sections. Pricing is a standalone link on the desktop nav (not a mega-menu), so
@@ -49,7 +44,7 @@ const STANDALONE_LINKS = [{ label: 'Pricing', href: '/pricing' }] as const
 const SHEET_ROW =
   'rounded-lg px-3 py-2.5 text-[15px] text-[var(--text-body)] transition-colors hover:bg-[var(--surface-hover)]'
 
-export function MobileNav({ stars }: MobileNavProps) {
+export function MobileNav() {
   const frost = useNavbarFrost()
   const [open, setOpen] = useState(false)
 
@@ -145,7 +140,7 @@ export function MobileNav({ stars }: MobileNavProps) {
           ))}
 
           <a
-            href='https://github.com/simstudioai/sim'
+            href='https://github.com/Ame-Al/ame'
             target='_blank'
             rel='noopener noreferrer'
             onClick={() => setOpen(false)}
@@ -153,7 +148,6 @@ export function MobileNav({ stars }: MobileNavProps) {
           >
             <GithubOutlineIcon className='size-[16px] text-[var(--text-icon)]' />
             <span>GitHub</span>
-            <span className='text-[var(--text-muted)]'>{stars}</span>
           </a>
 
           <div className='mt-3 flex flex-col gap-2'>

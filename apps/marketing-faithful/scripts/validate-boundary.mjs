@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const root = '/home/ubuntu/ame-github-export/apps/marketing-faithful'
+const root = path.resolve(import.meta.dirname, '..')
 const checks = [
   {
     label: 'Faithful route uses original landing composition',

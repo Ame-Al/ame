@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { getGitHubStars } from '@/lib/github/stars'
 import { Footer } from '@/app/(landing)/components/footer/footer'
 import { Navbar } from '@/app/(landing)/components/navbar/navbar'
 import { SiteStructuredData } from '@/app/(landing)/components/site-structured-data'
@@ -19,8 +18,7 @@ import { SiteStructuredData } from '@/app/(landing)/components/site-structured-d
  *   `overscroll-y-none`): the document body no longer overflows, so the viewport
  *   can't rubber-band, and the container's own overscroll bounce is disabled -
  *   without this the sticky navbar gets dragged past the top/bottom edges.
- * - The skip link (targets `#main-content`), the {@link Navbar} (GitHub stars
- *   fetched here at build/revalidate time - never client-fetched), and the
+ * - The skip link (targets `#main-content`), the {@link Navbar}, and the
  *   {@link Footer}.
  *
  * The page supplies only the `<main id='main-content'>` content between the
@@ -32,9 +30,7 @@ interface LandingShellProps {
   children: ReactNode
 }
 
-export async function LandingShell({ children }: LandingShellProps) {
-  const stars = await getGitHubStars()
-
+export function LandingShell({ children }: LandingShellProps) {
   return (
     <div className='light h-screen overflow-y-auto overscroll-y-none bg-[var(--bg)] text-[var(--text-primary)]'>
       <SiteStructuredData />
@@ -44,7 +40,7 @@ export async function LandingShell({ children }: LandingShellProps) {
       >
         Skip to main content
       </a>
-      <Navbar stars={stars} />
+      <Navbar />
       {children}
       <Footer />
     </div>

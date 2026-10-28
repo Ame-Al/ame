@@ -100,7 +100,7 @@ const SOCIAL_LINKS: FooterItem[] = [
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/simstudioai/sim',
+    href: 'https://github.com/Ame-Al/ame',
     external: true,
   },
 ]
